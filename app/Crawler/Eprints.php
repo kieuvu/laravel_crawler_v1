@@ -16,18 +16,20 @@ class Eprints
 
   public function urlCrawler()
   {
-    $url     = 'http://eprints.lse.ac.uk/view/year/2021.html';
-    $client  = new Client();
-    $crawler = $client->request('GET', $url);
+    for ($i = 1970; $i <= 2023; $i++) {
+      $url     = 'http://eprints.lse.ac.uk/view/year/' . $i . '.html';
+      $client  = new Client();
+      $crawler = $client->request('GET', $url);
 
-    $data = $crawler->filter('p > a')->each(function ($node) {
-      return $node->attr("href");
-    });
+      $data = $crawler->filter('p > a')->each(function ($node) {
+        return $node->attr("href");
+      });
 
-    foreach ($data as $url) {
-      $saver = new SaveData();
-      $saver->saveUrl($url);
-      $this->dataCrawler($url);
+      foreach ($data as $url) {
+        $saver = new SaveData();
+        $saver->saveUrl($url);
+        $this->dataCrawler($url);
+      }
     }
   }
 
