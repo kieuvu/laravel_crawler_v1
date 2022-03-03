@@ -30,9 +30,9 @@ class SaveData extends Controller
         $doc->save();
     }
 
-    public function updateStage($url, $stage)
+    public function updateStage($url, $state)
     {
         $target = Link::where('url', '=', $url);
-        $target->update(['visited' => $stage]);
+        $target->update(['visited' => $state]);
     }
 }

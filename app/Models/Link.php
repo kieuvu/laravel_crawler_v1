@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Link extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
+
+    protected $fillable = [
+        'url',
+    ];
 }

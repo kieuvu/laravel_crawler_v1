@@ -16,9 +16,10 @@ class Eprints
 
   public function urlCrawler()
   {
-    for ($i = 1970; $i <= 2023; $i++) {
+    $client  = new Client();
+
+    for ($i = 2023; $i >= 1970; $i--) {
       $url     = 'http://eprints.lse.ac.uk/view/year/' . $i . '.html';
-      $client  = new Client();
       $crawler = $client->request('GET', $url);
 
       $data = $crawler->filter('p > a')->each(function ($node) {

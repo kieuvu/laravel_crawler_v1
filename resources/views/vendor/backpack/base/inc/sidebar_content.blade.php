@@ -8,21 +8,12 @@
 
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"
-        ><i class="nav-icon la la-group"></i> Crawler</a
+        ><i class="nav-icon la la-question"></i> Crawler</a
     >
     <ul class="nav-dropdown-items">
-        <li class="nav-item">
-            <a class="nav-link" href="{{ backpack_url('/crawl/url') }}"
-                ><i class="nav-icon la la-user"></i> <span>URL Manager</span></a
-            >
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ backpack_url('/crawl/received') }}"
-                ><i class="nav-icon la la-key"></i>
-                <span>Data Received</span></a
-            >
-        </li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('document') }}'><i class='nav-icon la la-question'></i> Documents</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('link') }}'><i class='nav-icon la la-question'></i> URLs</a></li>
     </ul>
 </li>
 
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-question'></i> Users</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-group'></i> Users</a></li>

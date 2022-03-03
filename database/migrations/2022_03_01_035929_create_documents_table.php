@@ -15,10 +15,10 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string("title")->nullable('false');
+            $table->text("title")->nullable('false');
             $table->string("author")->nullable('false');
             $table->text("content")->nullable('false');
-            $table->string('download_link');
+            $table->text('download_link');
             $table->timestamps();
         });
     }
