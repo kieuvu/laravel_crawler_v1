@@ -42,6 +42,7 @@ class LinkCrudController extends CrudController
         CRUD::column('id');
         CRUD::column('url');
         CRUD::column('visited');
+        CRUD::column('has_data');
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
