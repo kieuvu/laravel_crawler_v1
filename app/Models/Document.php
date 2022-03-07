@@ -10,7 +10,7 @@ class Document extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-    protected $fillable = [
-        'title', 'author', 'content', 'download_link',
-    ];
+    // protected $fillable = [
+    //     'title', 'author', 'content', 'download_link',
+    // ];
 }

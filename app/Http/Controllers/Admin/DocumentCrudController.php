@@ -64,11 +64,6 @@ class DocumentCrudController extends CrudController
     {
         CRUD::setValidation(DocumentRequest::class);
 
-        CRUD::field('title');
-        CRUD::field('author');
-        CRUD::field('content');
-        CRUD::field('download_link');
-
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

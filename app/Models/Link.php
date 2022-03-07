@@ -10,7 +10,7 @@ class Link extends Model
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
 
-    protected $fillable = [
-        'url',
-    ];
+    // protected $fillable = [
+    //     'url',
+    // ];
 }

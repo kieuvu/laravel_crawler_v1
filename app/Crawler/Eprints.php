@@ -2,9 +2,6 @@
 
 namespace App\Crawler;
 
-use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\BrowserKit\HttpBrowser;
-use Symfony\Component\HttpClient\HttpClient;
 use Goutte\Client;
 use App\Models\Link;
 use App\Models\Document;
@@ -49,10 +46,10 @@ class Eprints
   public function dataCrawler($target)
   {
     $targetLink = Link::where('url_hashed', '=', md5($target));
-    $client  = new Client();
 
     if ($targetLink->first()['visited'] == 0) {
       $url     = $target;
+      $client  = new Client();
       $crawler = $client->request('GET', $url);
 
       $data = [];
