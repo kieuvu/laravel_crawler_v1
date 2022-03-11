@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Crawler\Eprints;
+use App\Crawler\EprintsUpdate;
 
 class CrawlerCmd extends Command
 {
@@ -12,7 +13,7 @@ class CrawlerCmd extends Command
      *
      * @var string
      */
-    protected $signature = 'crawler:eprints';
+    protected $signature = 'crawl:auto';
 
     /**
      * The console command description.
@@ -38,7 +39,7 @@ class CrawlerCmd extends Command
      */
     public function handle()
     {
-        $bot = new Eprints();
-        $bot->urlCrawler();
+        $bot = new EprintsUpdate();
+        $bot->init();
     }
 }

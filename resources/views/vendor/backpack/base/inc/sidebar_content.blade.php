@@ -17,3 +17,5 @@
 </li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('user') }}'><i class='nav-icon la la-group'></i> Users</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('crawls') }}'><i class='nav-icon la la-question'></i> Crawls</a></li>

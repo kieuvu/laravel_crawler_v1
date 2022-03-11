@@ -29,6 +29,10 @@ class LinkCrudController extends CrudController
         CRUD::setModel(\App\Models\Link::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/link');
         CRUD::setEntityNameStrings('link', 'links');
+
+        $this->crud->operation('list', function () {
+            $this->crud->removeButton('create');
+        });
     }
 
     /**
@@ -62,8 +66,6 @@ class LinkCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::setValidation(LinkRequest::class);
-
-        CRUD::field('url');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
