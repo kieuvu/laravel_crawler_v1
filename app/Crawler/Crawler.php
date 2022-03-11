@@ -8,7 +8,6 @@ use App\Crawler\DBMethod\Sql;
 
 class Crawler
 {
-
   public function __construct()
   {
     $this->QUEUE  = new Sql();
@@ -19,36 +18,35 @@ class Crawler
   public function run()
   {
     $firstStack = $this->QUEUE->getTheFirstPendingStack($this->SITE->rootUrl());
-
+    if (is_null($firstStack)) {
+      echo "Done\n";
+      return;
+    }
     $currentUrl = $firstStack->url;
 
     echo "Goto: [$currentUrl]\n";
-
     $urls = array_map(function ($item) {
       return $this->SITE->exceptionUrl($item);
     }, array_filter($this->GOUTTE->getAllLink($currentUrl, $this->SITE->crawlArea()), function ($item) {
       return !is_null($item);
     }));
-
     foreach ($urls as $url) {
-
       if ($this->QUEUE->checkExist($url)) {
         continue;
       } else {
-        if ($this->SITE->shouldCrawl($url)) {
-          $this->QUEUE->saveUrl($url, $this->SITE->rootUrl(), $currentUrl);
-        }
         if ($this->SITE->shouldGetData($url)) {
           $request = $this->GOUTTE->makeRequest($url);
           $data =  $this->SITE->getData($request);
-
           $this->QUEUE->saveUrl($url, $this->SITE->rootUrl(), $currentUrl, $data);
-          $this->QUEUE->setState(1, $url);
           print_r($data);
+        } else if ($this->SITE->shouldCrawl($url)) {
+          $this->QUEUE->saveUrl($url, $this->SITE->rootUrl(), $currentUrl);
+        } else {
+          continue;
         }
       }
     }
-    $this->QUEUE->setState(1, $url);
+    $this->QUEUE->setState(1, $currentUrl);
     $this->run();
   }
 
@@ -56,13 +54,10 @@ class Crawler
   {
     foreach ($this->SITE->startUrl() as $url) {
       if (!$this->QUEUE->checkExist($url)) {
-        $this->QUEUE->saveUrl($url, $url);
+        $this->QUEUE->saveUrl($url, $this->SITE->rootUrl(), $this->SITE->rootUrl());
         echo "Added Start URL: [$url]\n";
-        $this->run();
-      } else {
-        echo "Existed Start URL: [$url]\n";
-        $this->run();
       }
     }
+    $this->run();
   }
 }
