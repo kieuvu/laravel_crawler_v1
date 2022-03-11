@@ -3,8 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Crawler\Eprints;
-use App\Crawler\EprintsUpdate;
+use App\Crawler\Crawler;
 
 class CrawlerCmd extends Command
 {
@@ -39,7 +38,7 @@ class CrawlerCmd extends Command
      */
     public function handle()
     {
-        $bot = new EprintsUpdate();
+        $bot = new Crawler();
         $bot->init();
     }
 }

@@ -1,29 +1,34 @@
 <?php
+
+namespace App\Crawler\DBMethod;
+
+use App\Models\Crawl;
+
 class Sql
 {
-  public function getTheFirstPendingStack($model, $site)
+  public function getTheFirstPendingStack($site)
   {
-    return $model::orderBy('visited')
+    return Crawl::orderBy('visited')
       ->where('site', '=', $site)
       ->where('visited', '0')
       ->first();
   }
 
-  public function checkExist($model, $url)
+  public function checkExist($url)
   {
-    return $model::where('url_hash', '=', md5($url))->count() > 0;
+    return Crawl::where('url_hash', '=', md5($url))->count() > 0;
   }
 
-  public function setState($model, $state, $url)
+  public function setState($state, $url)
   {
-    $model::where('url_hash', '=', md5($url))->update([
+    Crawl::where('url_hash', '=', md5($url))->update([
       'visited'  => $state,
     ]);
   }
 
-  public function saveUrl($model, $url, $site, $parent, $data = [])
+  public function saveUrl($url, $site, $parent, $data = [])
   {
-    $crawl = new $model();
+    $crawl = new Crawl();
     $crawl->url = $url;
     $crawl->url_hash = md5($url);
     $crawl->site = $site;

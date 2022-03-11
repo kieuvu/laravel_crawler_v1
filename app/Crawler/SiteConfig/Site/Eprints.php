@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Crawler\SiteConfig\Site;
+
 use App\Crawler\SiteConfig\SiteConfig;
 
 
@@ -45,7 +47,17 @@ class Eprints extends SiteConfig
     return $url;
   }
 
-  public function getData()
+  public function getData($request)
   {
+    $data = [];
+
+    $data["title"]         = $request->filter('.ep_tm_pagetitle')->text();
+    $data["content"]       = $request->filter('.ep_summary_content_main > p')->last()->text();
+    $data["author"]        = $request->filter('.ep_summary_content_main .person_name')->text();
+    $data['download_link'] = ($request->filter('a.ep_document_link')->count() > 0)
+      ? $request->filter('a.ep_document_link')->attr('href')
+      : "";
+
+    return $data;
   }
 }
