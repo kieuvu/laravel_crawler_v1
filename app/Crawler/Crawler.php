@@ -22,9 +22,10 @@ class Crawler
       echo "Done\n";
       return;
     }
-    $currentUrl = $firstStack->url;
 
+    $currentUrl = $firstStack->url;
     echo "Goto: [$currentUrl]\n";
+
     $urls = array_map(function ($item) {
       return $this->SITE->exceptionUrl($item);
     }, array_filter($this->GOUTTE->getAllLink($currentUrl, $this->SITE->crawlArea()), function ($item) {

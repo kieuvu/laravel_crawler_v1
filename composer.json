@@ -7,6 +7,8 @@
     "require": {
         "php": "^7.3|^8.0",
         "backpack/crud": "^5.0",
+        "backpack/filemanager": "^1.1",
+        "barryvdh/laravel-elfinder": "^0.4.7",
         "fabpot/goutte": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
