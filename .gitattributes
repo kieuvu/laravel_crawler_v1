@@ -1,12 +1,3 @@
-* text=auto
-
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
-
-
 *.blade.php linguist-detectable=false
 *.css linguist-detectable=false
 *.js linguist-detectable=false
